@@ -4,7 +4,11 @@ import cv2
 
 model = YOLO("yolo11n.pt") #загружаем модель 
 
-fs = frame_source() 
+fs = frame_source()
+
+cv2.namedWindow("Video", cv2.WINDOW_NORMAL) #создаем окно для отображения видео 
+cv2.resizeWindow("Video", 1280, 720) #изменяем размер окна для отображения видео
+
 try: # пытался получить кадр с видеокамеры, если не получилось, то выкидываем ошибку
     for frame in fs.frames():
         results = model(frame)
